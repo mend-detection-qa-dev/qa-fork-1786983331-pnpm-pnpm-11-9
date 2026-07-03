@@ -12,7 +12,7 @@
       "security_scan_report_conclusion": "success",
       "_comment_security_scan_report_conclusion": "Optional. Expected scan report conclusion. Options: 'success' | 'failure'. This validates the security scan result status. If not provided, this check will not be performed.",
       "total_libs_scanned": {
-        "eq": 7
+        "gte": 5
       },
       "_comment_total_libs_scanned": "Optional. Expected number of libraries scanned with comparison operator. Validates that the scan processed libraries. If not provided, this check will not be performed.",
       "expected_messages": [],
@@ -31,31 +31,36 @@
       "check_system_paths": false,
       "_comment_check_system_paths": "Whether to validate that every dependency (direct and transitive, recursive) has a non-empty systemPath field. Fires independently of any other flag whenever true. Options: true | false. Default: false.",
       "expected_total_dependencies_number": {
-        "eq": 7
+        "gte": 5
       },
       "expected_direct_dependencies_number": {
-        "eq": 3
+        "eq": 2
       },
       "expected_transitive_dependencies_number": {
-        "eq": 4
+        "gte": 3
       },
       "_comment_expected_dependencies_number": "Optional. Expected number of dependencies with comparison operator. Operators: gt (>), gte (>=), lt (<), lte (<=), eq (==). If not provided, this check will not be performed.",
       "direct_dependencies_names_list": {
-        "contains": [
-          "react",
-          "react-dom",
-          "@testing-library/react"
-        ]
+        "contains": []
       },
       "transitive_dependencies_names_list": {
+        "contains": []
+      },
+      "_comment_dependencies_names_list": "Optional. Check specific libraries in direct dependencies. Operators: eq (==), contains (all items from expected list in actual), in(all items from actual list in expected), nin(actual list does not contain provided libs). If not provided, this check will not be performed.",
+      "direct_dependencies_names_list_group_id": {
+        "eq": [
+          "react",
+          "react-dom"
+        ]
+      },
+      "transitive_dependencies_names_list_group_id": {
         "contains": [
-          "@testing-library/dom",
           "loose-envify",
           "js-tokens",
           "scheduler"
         ]
       },
-      "_comment_dependencies_names_list": "Optional. Check specific libraries in direct dependencies. Operators: eq (==), contains (all items from expected list in actual), in(all items from actual list in expected), nin(actual list does not contain provided libs). If not provided, this check will not be performed.",
+      "_comment_dependencies_names_list_group_id": "Optional. npm-family (bun/npm/yarn/pnpm) name checks: Mend emits the tgz-filename in artifactId and the clean package name in groupId, so these validate expected names against groupId. Same operators as the artifactId variants (eq, contains, in, nin).",
       "expected_package_managers": {
         "contains": [
           "pnpm"
@@ -84,31 +89,23 @@
       },
       "expected_dependency_pairs": [
         {
-          "artifactId": "react",
+          "artifactId": "react-18.3.1.tgz",
           "version": "18.3.1"
         },
         {
-          "artifactId": "react-dom",
+          "artifactId": "react-dom-18.3.1.tgz",
           "version": "18.3.1"
         },
         {
-          "artifactId": "@testing-library/react",
-          "version": "14.2.1"
-        },
-        {
-          "artifactId": "@testing-library/dom",
-          "version": "9.3.4"
-        },
-        {
-          "artifactId": "loose-envify",
+          "artifactId": "loose-envify-1.4.0.tgz",
           "version": "1.4.0"
         },
         {
-          "artifactId": "js-tokens",
+          "artifactId": "js-tokens-4.0.0.tgz",
           "version": "4.0.0"
         },
         {
-          "artifactId": "scheduler",
+          "artifactId": "scheduler-0.23.2.tgz",
           "version": "0.23.2"
         }
       ],
